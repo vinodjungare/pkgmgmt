@@ -44,5 +44,15 @@
 #
 class pkgmgmt {
 
+package { '7zip' :
+  ensure         => installed,
+  provider        => 'chocolatey',
+  install_options => ['-y'],
+}
+
+reboot { 'after' :
+  subscribe	=> Package['7zip'],
+  apply 	=> finished,
+}
 
 }
